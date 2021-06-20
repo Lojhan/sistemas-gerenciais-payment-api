@@ -44,8 +44,8 @@ export class PaymentTicketService {
     }
   }
 
-  // @Cron('* 30 5 * * 1-5')
-  @Cron('* * * * * *')
+  @Cron('* 30 5 * * 1-5')
+  // @Cron('* * * * * *')
   async validateTickets() {
     const data = await this.paymentTicketRepository.find({
       where: {
@@ -93,6 +93,16 @@ export class PaymentTicketService {
       });
 
       return data;
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  async getTickets() {
+    try {
+      return await this.paymentTicketRepository.find({
+        where: { paid: false },
+      });
     } catch (e) {
       console.log(e);
     }

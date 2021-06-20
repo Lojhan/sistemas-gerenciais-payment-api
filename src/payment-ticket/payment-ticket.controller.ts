@@ -20,4 +20,9 @@ export class PaymentTicketController {
   getTicket(@Param('uuid') uuid: string) {
     return this.paymentTicketService.getTicket(uuid);
   }
+
+  @Get()
+  getTickets() {
+    return this.paymentTicketService.getTickets();
+  }
 }
